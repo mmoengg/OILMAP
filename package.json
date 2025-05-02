@@ -39,6 +39,6 @@
     "types": "./dist/index.d.ts",
     "type": "module",
     "engines": {
-        "node": "18.x"
+        "node": "20.x"
     }
 }
