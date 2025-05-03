@@ -22,17 +22,19 @@
 <style>
 	.main_container {
 		position: relative;
-		width: 100%;
-		height: 100%;
-		padding: 16px;
-		background: var(--color-blue-dark);
+		width: 100vw;
+		height: 100vh;
+		background: var(--color-text);
 	}
 	.main_content {
 		width: 100%;
+		height: 100%;
 		max-width: 430px;
 		margin: 0 auto;
+		padding: 16px;
+		background: var(--color-background);
 		display: flex;
-		align-items: center;
+		align-items: start;
 		justify-content: center;
 	}
 
@@ -78,12 +80,5 @@
 
 	.nav_list a.active{
 		color: var(--color-text);
-	}
-
-	@media (max-width: 480px) {
-		nav {
-			max-width: 100vw;
-			/* border-radius: 0; */
-		}
 	}
 </style>

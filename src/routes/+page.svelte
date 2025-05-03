@@ -9,14 +9,13 @@
 		try {
 			const result = await signInWithPopup(auth, githubProvider);
 			console.log(result);
-			// result.user에 사용자 정보가 들어있음
 			// 필요하다면 result.user.getIdToken()으로 토큰 획득 가능
 			if (result.user) {
 				// 로그인 성공 후 원하는 페이지로 이동
 				goto('/home');
 			}
 		} catch (error) {
-		alert('GitHub 로그인 실패: ' + error.message);
+			alert('GitHub 로그인 실패: ' + error.message);
 		}
 	}
 </script>
