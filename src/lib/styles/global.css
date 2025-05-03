@@ -30,8 +30,6 @@
 html,
 body {
     height: 100%;
-    background: var(--color-background);
-    color: #1b1b1b;
     box-sizing: border-box;
 }
 body {
