@@ -19,6 +19,8 @@
     --color-surface: #ffffff;
     --color-text: #1b1b1b;
     --color-black-50: #a5acb4;
+
+    --color-main-gr: linear-gradient(135deg, var(--color-blue-start) 0%, var(--color-blue-end) 100%);
 }
 
 .bg-blue-gradient {
