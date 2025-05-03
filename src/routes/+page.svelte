@@ -1,3 +1,7 @@
+<script>
+	import { goto } from '$app/navigation';
+</script>
+
 <body>
 	<div class="app-container">
 	  <main class="main-content">
@@ -8,7 +12,7 @@
 		  <div class="card-body">
 			<h1 class="card-title">오일맵</h1>
 			<p class="card-desc">유가 정보 파트너</p>
-			<button class="explore-btn">살펴보기</button>
+			<button class="explore-btn" on:click={() => goto('/home')}>살펴보기</button>
 		  </div>
 		</section>
 	  </main>
