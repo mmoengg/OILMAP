@@ -2,11 +2,34 @@
 @import './reset.css';
 @import './font.css';
 
+:root {
+    /* 블루 그라데이션 */
+    --color-blue-start: #4a64ae;
+    --color-blue-end: #758acc;
+
+    /* 추가 블루 계열 */
+    --color-blue-100: #e7eaf6;
+    --color-blue-400: #cad0e9;
+    --color-blue-500: #bcc4e2;
+    --color-blue-700: #727fb0;
+    --color-blue-900: #485ea9;
+
+    /* 기타 색상 */
+    --color-background: #f8f7fb;
+    --color-surface: #ffffff;
+    --color-text: #1b1b1b;
+    --color-black-50: #a5acb4;
+}
+
+.bg-blue-gradient {
+    background: linear-gradient(135deg, var(--color-blue-start) 0%, var(--color-blue-end) 100%);
+}
+
 html,
 body {
     height: 100%;
-    background: #222;
-    color: #222;
+    background: var(--color-background);
+    color: #1b1b1b;
     box-sizing: border-box;
 }
 body {
