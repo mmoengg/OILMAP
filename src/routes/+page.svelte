@@ -1,116 +1,134 @@
 <script>
+	import '$lib/styles/global.css';
 	import { goto } from '$app/navigation';
+
+	import { auth, githubProvider } from '$lib/firebase/firebase.ts';
+	import { signInWithPopup } from 'firebase/auth';
+
+	const loginWithGitHub = async () => {
+		try {
+			const result = await signInWithPopup(auth, githubProvider);
+			console.log(result);
+			// result.user에 사용자 정보가 들어있음
+			// 필요하다면 result.user.getIdToken()으로 토큰 획득 가능
+			if (result.user) {
+				// 로그인 성공 후 원하는 페이지로 이동
+				goto('/home');
+			}
+		} catch (error) {
+		alert('GitHub 로그인 실패: ' + error.message);
+		}
+	}
 </script>
 
 <body>
-	<div class="app-container">
-	  <main class="main-content">
-		<section class="card">
-		  <div class="card-image-container">
-			<img src="/images/icon/icon_main.png" alt="OilMap Banner" class="card-image" />
-		  </div>
-		  <div class="card-body">
-			<h1 class="card-title">오일맵</h1>
-			<p class="card-desc">유가 정보 파트너</p>
-			<button class="explore-btn" on:click={() => goto('/home')}>살펴보기</button>
-		  </div>
-		</section>
-	  </main>
-	</div>
-  </body>
+	<section class="app_container">
+		<div class="app_wrap">
+			<div class="app_title">
+				<h1>OilMap</h1>
+				<span>유가 정보 파트너, 오일맵</span>
+			</div>
+			<div class="login_wrap">
+				<ul class="login_list">
+					<!-- <li>
+						<button type="button">Google</button>
+					</li>
+					<li>
+						<button type="button">KakaoTalk</button>
+					</li> -->
+					<li>
+						<button type="button" on:click={loginWithGitHub}>GitHub</button>
+					</li>
+				</ul>
+			</div>
+			<div class="copyright">© mmoengg</div>
+		</div>
+	</section>
+</body>
   
   <style>
-		body {
-			margin: 0;
-			padding: 0;
-			background: #222;
-		}
-
-		.app-container {
-			min-height: 100vh;
+		.app_container  {
+			width: 100vw;
+			height: 100vh;
+			background: var(--color-text);
 			display: flex;
-			flex-direction: column;
 			align-items: center;
-		}
-
-		.main-content {
-			width: 100%;
-			max-width: 430px;
-			min-height: calc(100vh - 48px);
-			background: #222;
-			display: flex;
 			justify-content: center;
-			align-items: center;
-			margin: 0 auto;
-			box-sizing: border-box;
-		}
-
-		.card {
-			background: #fff;
-			border-radius: 32px;
-			box-shadow: 0 0 24px 0 rgba(0,0,0,0.15);
-			width: 90%;
-			max-width: 360px;
-			padding: 32px 24px 24px 24px;
-			display: flex;
 			flex-direction: column;
-			align-items: center;
-			position: relative;
+			gap: 20px;
 		}
-
-		.card-image-container {
-			position: relative;
-			width: 120px;
-			height: 120px;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-		}
-
-		.card-image {
+		.app_wrap {
 			width: 100%;
 			height: 100%;
-			border-radius: 999px;
-			object-fit: contain;
-			filter: brightness(0.95);
+			max-width: 430px;
+			margin: 0 auto;
+			padding: 20px;
+			background: var(--color-main-gr);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+			gap: 20px;
 		}
 
-		.card-title {
-			font-size: 2rem;
-			font-weight: bold;
-			margin: 16px 0 12px 0 ;
-			color: #222;
-			text-align: center;
+		.app_title {
+			width: 100%;
+			margin-bottom: 20px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+			gap: 20px;
+		}
+		.app_title h1 {
+			color: var(--color-surface);
+			font-size: 48px;
+		}
+		.app_title span {
+			color: var(--color-surface);
+			font-size: 16px;
 		}
 
-		.card-desc {
-			font-size: 1.1rem;
-			color: #666;
-			text-align: center;
-			margin-bottom: 28px;
+		.login_wrap {
+			width: 100%;
 		}
-
-		.explore-btn {
-			width: 180px;
-			background: #ff9800;
-			color: #fff;
-			border: none;
+		.login_list {
+			width: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+			gap: 12px;
+		}
+		.login_list li {
+			width: 100%;
+			height: 45px;
+		}
+		.login_list li button {
+			width: 100%;
+			height: 100%;
+			color: var(--color-blue-900);
+			font-size: 12px;
 			border-radius: 12px;
-			padding: 14px 0;
-			font-size: 1.1rem;
-			font-weight: bold;
+			background: var(--color-surface);
+			display: flex;
+			justify-content: center;
+			align-items: center;
 			cursor: pointer;
-			box-shadow: 0 2px 8px rgba(255,152,0,0.12);
-			transition: background 0.2s;
 		}
-		.explore-btn:hover {
-			background: #e68900;
+		.login_list li button:hover{
+			color: var(--color-surface);
+			border: 1px solid var(--color-surface);
+			background: transparent;
+			transition: 0.3s;
 		}
 
-	@media (max-width: 480px) {
-		.card {
-			padding: 24px 8px 16px 8px;
-			max-width: 98vw;
+		.copyright {
+			position: fixed;
+			bottom: 20px;
+			width: 100%;
+			color: var(--color-surface);
+			font-size: 12px;
+			text-align: center;
 		}
-	}
   </style>
