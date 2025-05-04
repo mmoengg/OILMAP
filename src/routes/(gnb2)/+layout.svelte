@@ -1,19 +1,11 @@
 <script>
 	  import '$lib/styles/global.css';
 	  import { page } from '$app/stores';
-
-	  $: current = $page.url.pathname;
 </script>
 
 <div class="main_container">
 	<div class="main_content">
 		<slot />
-		<ul class="nav_list">
-			<li><a href="/home" class:active={current === '/home'}>홈</a></li>
-			<li><a href="/stations" class:active={current === 'stations'}>주유소</a></li>
-			<li><a href="/history" class:active={current === '/history'}>이력</a></li>
-			<li><a href="/settings" class:active={current === '/settings'}>전체</a></li>
-		</ul>
 	</div>
 </div>
 
