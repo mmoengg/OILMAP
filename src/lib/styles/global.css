@@ -16,15 +16,12 @@
 
     /* 기타 색상 */
     --color-background: #f8f7fb;
-    --color-surface: #ffffff;
+    --color-white: #ffffff;
     --color-text: #1b1b1b;
     --color-black-50: #a5acb4;
+    --color-black-70: #9ca2aa;
 
     --color-main-gr: linear-gradient(135deg, var(--color-blue-start) 0%, var(--color-blue-end) 100%);
-}
-
-.bg-blue-gradient {
-    background: linear-gradient(135deg, var(--color-blue-start) 0%, var(--color-blue-end) 100%);
 }
 
 html,
@@ -81,7 +78,7 @@ textarea {
     padding: 8px 38px 8px 12px;
     font-size: 14px;
     color: var(--color-text);
-    background-color: var(--color-surface);
+    background-color: var(--color-white);
     border-radius: 8px;
     border: none;
     cursor: pointer;

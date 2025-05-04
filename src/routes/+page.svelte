@@ -95,11 +95,11 @@
 			gap: 20px;
 		}
 		.app_title h1 {
-			color: var(--color-surface);
+			color: var(--color-white);
 			font-size: 48px;
 		}
 		.app_title span {
-			color: var(--color-surface);
+			color: var(--color-white);
 			font-size: 16px;
 		}
 
@@ -124,15 +124,15 @@
 			color: var(--color-blue-900);
 			font-size: 12px;
 			border-radius: 12px;
-			background: var(--color-surface);
+			background: var(--color-white);
 			display: flex;
 			justify-content: center;
 			align-items: center;
 			cursor: pointer;
 		}
 		.login_list li button:hover{
-			color: var(--color-surface);
-			border: 1px solid var(--color-surface);
+			color: var(--color-white);
+			border: 1px solid var(--color-white);
 			background: transparent;
 			transition: 0.3s;
 		}
@@ -141,7 +141,7 @@
 			position: fixed;
 			bottom: 20px;
 			width: 100%;
-			color: var(--color-surface);
+			color: var(--color-white);
 			font-size: 12px;
 			text-align: center;
 		}
