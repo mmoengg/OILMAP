@@ -1,21 +1,36 @@
 <script>
 	import '$lib/styles/global.css';
 	import { goto } from '$app/navigation';
-
 	import { auth, githubProvider } from '$lib/firebase/firebase.ts';
 	import { signInWithPopup } from 'firebase/auth';
 
 	const loginWithGitHub = async () => {
-		try {
-			const result = await signInWithPopup(auth, githubProvider);
-			console.log(result);
-			// 필요하다면 result.user.getIdToken()으로 토큰 획득 가능
-			if (result.user) {
-				// 로그인 성공 후 원하는 페이지로 이동
-				goto('/home');
-			}
-		} catch (error) {
-			alert('GitHub 로그인 실패: ' + error.message);
+    	try {
+				// Firebase 클라이언트로 GitHub 로그인
+				const result = await signInWithPopup(auth, githubProvider);
+				
+				// idToken 획득
+				const idToken = await result.user.getIdToken();
+				
+				// 서버 API로 idToken 전송
+				const response = await fetch('/api/auth/github', {
+					method: 'POST',
+					headers: {
+					'Content-Type': 'application/json'
+					},
+					body: JSON.stringify({ idToken })
+				});
+				
+				const data = await response.json();
+				
+				if (data.success) {
+					// 로그인 성공 후 홈으로 이동
+					goto('/home');
+				} else {
+					throw new Error(data.error || 'GitHub 로그인 실패');
+				}
+			} catch (error) {
+				alert('GitHub 로그인 실패: ' + error.message);
 		}
 	}
 </script>

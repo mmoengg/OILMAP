@@ -10,7 +10,7 @@
 		<slot />
 		<ul class="nav_list">
 			<li><a href="/home" class:active={current === '/home'}>홈</a></li>
-			<li><a href="/stations" class:active={current === 'stations'}>주유소</a></li>
+			<li><a href="/stations" class:active={current === '/stations'}>주유소</a></li>
 			<li><a href="/history" class:active={current === '/history'}>이력</a></li>
 			<li><a href="/settings" class:active={current === '/settings'}>전체</a></li>
 		</ul>
