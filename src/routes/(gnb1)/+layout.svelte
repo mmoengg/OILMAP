@@ -11,7 +11,7 @@
 		<ul class="nav_list">
 			<li><a href="/home" class:active={current === '/home'}>홈</a></li>
 			<li><a href="/stations" class:active={current === '/stations'}>주유소</a></li>
-			<li><a href="/history" class:active={current === '/history'}>이력</a></li>
+			<li><a href="/history" class:active={current === '/history'}>주유 기록</a></li>
 			<li><a href="/settings" class:active={current === '/settings'}>전체</a></li>
 		</ul>
 	</div>
@@ -29,7 +29,7 @@
 	.main_content {
 		width: 100%;
 		height: 100%;
-		max-width: 430px;
+		max-width: 691px;
 		margin: 0 auto;
 		padding: 16px;
 		background: var(--color-background);
@@ -44,10 +44,10 @@
 		bottom: 0;
 		width: 100%;		
 		height: 60px;
-		max-width: 430px;
+		max-width: 691px;
 		margin: 0 auto;
 		padding: 0 6px;
-		background: var(--color-surface);
+		background: var(--color-white);
 		box-shadow: 0 -1px 5px rgba(0,0,0,0.03);
 		border-top-left-radius: 18px;
 		border-top-right-radius: 18px;

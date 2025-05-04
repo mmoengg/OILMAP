@@ -46,7 +46,7 @@
 	.favorite_item {
 		width: 100%;
 		padding: 14px;
-		background: var(--color-surface);
+		background: var(--color-white);
 		border-radius: 14px;
 		display: flex;
 		align-items: center;

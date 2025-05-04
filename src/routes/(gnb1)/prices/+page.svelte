@@ -66,7 +66,7 @@
   
 <style>
 	.prices-container {
-		max-width: 430px;
+		max-width: 691px;
 		margin: 0 auto;
 		padding: 32px 16px 24px 16px;
 	}

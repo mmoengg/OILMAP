@@ -103,7 +103,7 @@
 		width: 100%;
 		padding: 24px;
     	background: linear-gradient(135deg, var(--color-blue-start) 0%, var(--color-blue-end) 100%);
-		color: var(--color-surface);
+		color: var(--color-white);
 		border-radius: 14px;
 		font-size: 14px;
 		display: flex;
@@ -131,7 +131,7 @@
 	.favorites_wrap {
 		width: 100%;
 		/* padding: 24px; */
-		/* background: var(--color-surface); */
+		/* background: var(--color-white); */
 		border-radius: 14px;
 		font-size: 14px;
 		display: flex;
@@ -163,7 +163,7 @@
 		height: 200px;
 		padding: 14px;
 		color: var(--color-blue-700);
-		background: var(--color-surface);
+		background: var(--color-white);
 		border-radius: 14px;
 		display: flex;
 		align-items: center;

@@ -1,4 +1,5 @@
 <script>
+	import Header from '$lib/components/common/Header.svelte';
 	import { goto } from "$app/navigation";
 
 	let searchTerm = '';
@@ -11,12 +12,8 @@
 </script>
 
 <section class="stations_container">
+	<Header title="주유소" back={true} />
 	<div class="title_wrap">
-		<div class="title_inner_wrap">
-			<button type="button" on:click={() => goto('/home')}>〈</button>
-			<h1>Stations</h1>
-			<div></div>
-		</div>
 		<div class="catregory_wrap">
 			<div class="select_wrap">
 				<select>
@@ -61,26 +58,18 @@
 		width: 100%;
 		display: flex;
 		flex-direction: column;
-		/* gap: 15px; */
+		gap: 10px;
 	}
 
 	.title_wrap {
 		width: 100%;
-		margin-bottom: 10px;
 		display: flex;
 		align-items: center;
 		flex-direction: column;
 		justify-content: space-between;
 		gap: 10px;
 	}
-	.title_inner_wrap {
-		width: 100%;
-		height: 50px;
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-	}
-
+	
 	.catregory_wrap {
 		width: 100%;
 		height: 50px;
@@ -93,7 +82,7 @@
 	.stations_list {
 		width: 100%;
 		padding: 24px;
-		background: var(--color-surface);
+		background: var(--color-white);
 		border-radius: 14px;
 		display: flex;
 		flex-direction: column;

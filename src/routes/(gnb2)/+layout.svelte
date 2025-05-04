@@ -21,7 +21,7 @@
 	.main_content {
 		width: 100%;
 		height: 100%;
-		max-width: 430px;
+		max-width: 691px;
 		margin: 0 auto;
 		padding: 16px;
 		background: var(--color-background);
@@ -29,17 +29,17 @@
 		align-items: start;
 		justify-content: center;
 	}
-
+/* 
 	.nav_list {
 		position: fixed;
 		z-index: 100;
 		bottom: 0;
 		width: 100%;		
 		height: 60px;
-		max-width: 430px;
+		max-width: 691px;
 		margin: 0 auto;
 		padding: 0 6px;
-		background: var(--color-surface);
+		background: var(--color-white);
 		box-shadow: 0 -1px 5px rgba(0,0,0,0.03);
 		border-top-left-radius: 18px;
 		border-top-right-radius: 18px;
@@ -72,5 +72,5 @@
 
 	.nav_list a.active{
 		color: var(--color-text);
-	}
+	} */
 </style>
