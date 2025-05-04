@@ -16,7 +16,6 @@ export async function load({ locals }) {
 
         const user = userSnap.exists ? userSnap.data() : null;
         let favorites = favoritesSnap.docs.map((doc) => ({ ...doc.data() }));
-        console.log('///// favorites:', favorites);
 
         /**
          * 오늘의 유가 정보

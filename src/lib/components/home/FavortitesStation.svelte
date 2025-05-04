@@ -38,18 +38,6 @@
 					<div class="price">{Number(oil.price).toLocaleString()}원</div>
 				</li>
 			{/each}
-			<!-- <li class="oil_item">
-				<div class="icon">휘</div>
-				<div class="price">1,500원</div>
-			</li>
-			<li class="oil_item">
-				<div class="icon">경</div>
-				<div class="price">1,500원</div>
-			</li>
-			<li class="oil_item">
-				<div class="icon">고</div>
-				<div class="price">1,500원</div>
-			</li> -->
 		</ul>
 	</div>
 </li>

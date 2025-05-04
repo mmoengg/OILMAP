@@ -2,12 +2,8 @@
 	import FavoritesStation from '$lib/components/home/FavortitesStation.svelte';
 
 	export let data 
-	console.log('data:', data)
 
 	const userData = data.user
-	const oilData = data.oil
-	console.log('userData:', userData)
-	console.log('oilData:', oilData)
 
 	const mainOils = data.oil.map((item) => {
 		if (item.prodName === '휘발유' || item.prodName === '자동차용경유') {
@@ -55,6 +51,9 @@
 <style>
 	.home_container {
 		width: 100%;
+		height: 100%;
+		padding-bottom: 60px;
+		overflow-y: auto;
 		display: flex;
 		flex-direction: column;
 		gap: 35px;
@@ -153,6 +152,7 @@
 	}
 	.favorites_list {
 		width: 100%;
+		height: 100%;
 		display: flex;
 		flex-direction: column;
 		gap: 14px;
