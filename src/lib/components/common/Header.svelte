@@ -18,7 +18,6 @@
 		{title}
 	</div>
 	<div class="right"></div>
-	
 </div>
 
 
@@ -39,9 +38,9 @@
 	}
 
 	.left .button_wrap {
-		width: 30px;
+		width: 20px;
 		height: 30px;
-		background: var(--color-white);
+		/* background: var(--color-white); */
 		border-radius: 99px;
 		display: flex;
 		align-items: center;
@@ -49,10 +48,10 @@
 	}
 
 	.left button {
-		width: 10px;
-		height: 10px;
+		width: 14px;
+		height: 14px;
 		background: url('/images/icon/icon_arrow.png') no-repeat center center;
-		background-size: 10px 10px;
+		background-size: 14px 14px;
 		transform: rotate(90deg);
 	}
 

@@ -29,7 +29,7 @@
 	.main_content {
 		width: 100%;
 		height: 100%;
-		max-width: 430px;
+		max-width: 691px;
 		margin: 0 auto;
 		padding: 16px;
 		background: var(--color-background);
@@ -44,7 +44,7 @@
 		bottom: 0;
 		width: 100%;		
 		height: 60px;
-		max-width: 430px;
+		max-width: 691px;
 		margin: 0 auto;
 		padding: 0 6px;
 		background: var(--color-white);

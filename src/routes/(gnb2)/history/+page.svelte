@@ -31,6 +31,7 @@
 
 <style>
 	.history_container {
+		position: relative;
 		width: 100%;
 		height: 100%;
 		display: flex;
@@ -69,18 +70,17 @@
 		background: transparent;
 	}
 
-
 	.buttn_add {
-		position: fixed;
-		bottom: 30px;
-		right: 30px;
-		width: 50px;
-		height: 50px;
+		position: absolute;
+		top: 5px;
+		right: 0px;
+		width: 40px;
+		height: 40px;
 		border: none;
 		font-size: 24px;
 		color: var(--color-white);
 		background: var(--color-main-gr);
-		box-shadow: 0px 0px 16px rgba(61, 77, 119, 0.4);
+		/* box-shadow: 0px 0px 16px rgba(61, 77, 119, 0.4); */
 		border-radius: 99px;
 		display: flex;
 		align-items: center;

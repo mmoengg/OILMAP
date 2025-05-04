@@ -22,7 +22,6 @@
 	
 	.history_item {
 		width: 100%;
-		height: 100%;
 		padding-bottom: 25px;
 		display: flex;
 		border-bottom: 1px solid var(--color-blue-100);

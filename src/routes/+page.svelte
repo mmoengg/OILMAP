@@ -74,7 +74,7 @@
 		.app_wrap {
 			width: 100%;
 			height: 100%;
-			max-width: 430px;
+			max-width: 691px;
 			margin: 0 auto;
 			padding: 20px;
 			background: var(--color-main-gr);
