@@ -1,32 +1,35 @@
 <script>
 	import Header from '$lib/components/common/Header.svelte';
 	import HistoryContent from '$lib/components/history/HistoryContent.svelte';
+	import FuelHistoryForm from '$lib/components/history/FuelHistoryForm.svelte';
 
 	export let data;
 
-	$: history = data?.history || [];
+	let showForm = false;
 </script>
 
-<section class="history_container">
-	<Header title="주유 기록" back={true} />
-	<div class="content_wrap">
-		<ul class="history_list">
-			<HistoryContent />
-			<HistoryContent />
-			<HistoryContent />
-			<HistoryContent />
-			<HistoryContent />
-			<HistoryContent />
-			<HistoryContent />
-			<HistoryContent />
-		</ul>
-	</div>
-	<button type="button" class="buttn_add">+</button>
 
-<!-- {#if history.length > 0} -->
-	<!-- {:else} -->
-	<!-- <p>이력이 없습니다.</p> -->
-<!-- {/if} -->
+
+
+<section class="history_container">
+	{#if showForm}
+		<FuelHistoryForm bind:showForm />
+	{/if}
+	<Header title="주유 기록" back={true} />
+	{#if data.history.length > 0}
+		
+		<div class="content_wrap">
+			<ul class="history_list">
+				{#each data.history as item (item.id)}
+					<HistoryContent items={item} />
+				{/each}
+			</ul>
+		</div>
+		<button type="button" class="buttn_add" on:click={() => 
+			{showForm = !showForm}}>+</button>
+	{:else}
+		<p>이력이 없습니다.</p>
+	{/if}
 </section>
 
 <style>

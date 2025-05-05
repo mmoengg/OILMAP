@@ -1,19 +1,19 @@
 <script>
-
+	export let items = [];
 </script>
 
 
 <li class="history_item">
-	<div class="date">2024-04-28</div>
+	<div class="date">{items.date.slice(0, 10)}</div>
 	<div class="info_wrap">
 		<div class="logo"></div>
 		<div class="name_wrap">
-			<div class="name">플라트(주)서호주유소</div>
-			<div class="oil">휘발유 9L</div>
+			<div class="name">{items.station_name}</div>
+			<div class="oil">{items.station_oil} {items.station_liter}L</div>
 		</div>
 		<div class="price_wrap">
-			<div class="price">1,563원/L</div>
-			<div class="amount">13,824원</div>
+			<div class="price">{items.station_price.toLocaleString()}원/L</div>
+			<div class="amount">{items.amount.toLocaleString()}원</div>
 		</div>
 	</div>
 </li>

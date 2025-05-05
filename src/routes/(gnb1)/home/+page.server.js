@@ -6,7 +6,6 @@ import { parseStringPromise } from 'xml2js';
 export async function load({ locals }) {
     try {
         if (!locals.user) return {};
-
         const { uid } = locals.user;
 
         /**
