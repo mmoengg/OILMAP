@@ -5,11 +5,8 @@
 
 	export let data;
 
-	let showForm = false;
+	let showForm = true;
 </script>
-
-
-
 
 <section class="history_container">
 	{#if showForm}
