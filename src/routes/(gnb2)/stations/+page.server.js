@@ -8,6 +8,7 @@ export async function load({ locals }) {
         /* 실제 데이터 사용 시 */
 
 
+
         /* 가데이터 사용 시 */
         // const history = [
         //     {
