@@ -20,7 +20,9 @@
 <section class="home_container">
 	<div class="logo_wrap">
 		<div class="logo">OilMap</div>
-		<div class="profile"></div>
+		<div class="profile">
+			<img src={resUser.profile.photo_url} alt="profile" />
+		</div>
 	</div>
 	<div class="price_wrap">
 		<div class="price_title">유가 <p>{mainOils[0].tradeDate.slice(0, 4) + '-' + mainOils[0].tradeDate.slice(4, 6) + '-' + mainOils[0].tradeDate.slice(6, 8)}</p> </div>
@@ -79,6 +81,8 @@
 		height: 40px;
 		background-color: black;
 		border-radius: 999px;
+		overflow: hidden;
+		cursor: pointer;
 	}
 
 	.price_wrap {
