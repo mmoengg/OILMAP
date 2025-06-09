@@ -19,51 +19,54 @@ export async function load({ locals }) {
         /**
          * 오늘의 유가 정보
          */
-        // const oilReq = await fetch(`https://www.opinet.co.kr/api/avgAllPrice.do?out=xml&code=${SECRET_API_KEY}`, {
-        //     method: 'GET',
-        // });
-        // const oilRes = await oilReq.text();
+        const oilReq = await fetch(`https://www.opinet.co.kr/api/avgAllPrice.do?out=xml&code=${SECRET_API_KEY}`, {
+            method: 'GET',
+        });
+        const oilRes = await oilReq.text();
+        console.log('SECRET_API_KEY', SECRET_API_KEY);
 
-        // 오늘의 유가 테스트용 데이터 (실제 API 호출 대신 사용)
-        const oilRes = `
-		<?xml version="1.0" encoding="UTF-8"?>
-        <RESULT>
-            <OIL>
-                    <TRADE_DT>20250503</TRADE_DT>
-                    <PRODCD>B034</PRODCD>
-                    <PRODNM>고급휘발유</PRODNM>
-                    <PRICE>1909.13</PRICE>
-                    <DIFF>-3.29</DIFF>
-            </OIL>
-            <OIL>
-                    <TRADE_DT>20250503</TRADE_DT>
-                    <PRODCD>B027</PRODCD>
-                    <PRODNM>휘발유</PRODNM>
-                    <PRICE>1639.70</PRICE>
-                    <DIFF>+0.17</DIFF>
-            </OIL>
-            <OIL>
-                    <TRADE_DT>20250503</TRADE_DT>
-                    <PRODCD>D047</PRODCD>
-                    <PRODNM>자동차용경유</PRODNM>
-                    <PRICE>1506.73</PRICE>
-                    <DIFF>-0.21</DIFF>
-            </OIL>
-            <OIL>
-                    <TRADE_DT>20250503</TRADE_DT>
-                    <PRODCD>C004</PRODCD>
-                    <PRODNM>실내등유</PRODNM>
-                    <PRICE>1309.95</PRICE>
-                    <DIFF>+0.11</DIFF>
-            </OIL>
-            <OIL>
-                    <TRADE_DT>20250503</TRADE_DT>
-                    <PRODCD>K015</PRODCD>
-                    <PRODNM>자동차용부탄</PRODNM>
-                    <PRICE>1088.31</PRICE>
-                    <DIFF>+0.29</DIFF>
-            </OIL>
-        </RESULT>`;
+        // -- 오늘의 유가 가데이터 --
+        // const oilRes = `
+		// <?xml version="1.0" encoding="UTF-8"?>
+        // <RESULT>
+        //     <OIL>
+        //             <TRADE_DT>20250503</TRADE_DT>
+        //             <PRODCD>B034</PRODCD>
+        //             <PRODNM>고급휘발유</PRODNM>
+        //             <PRICE>1909.13</PRICE>
+        //             <DIFF>-3.29</DIFF>
+        //     </OIL>
+        //     <OIL>
+        //             <TRADE_DT>20250503</TRADE_DT>
+        //             <PRODCD>B027</PRODCD>
+        //             <PRODNM>휘발유</PRODNM>
+        //             <PRICE>1639.70</PRICE>
+        //             <DIFF>+0.17</DIFF>
+        //     </OIL>
+        //     <OIL>
+        //             <TRADE_DT>20250503</TRADE_DT>
+        //             <PRODCD>D047</PRODCD>
+        //             <PRODNM>자동차용경유</PRODNM>
+        //             <PRICE>1506.73</PRICE>
+        //             <DIFF>-0.21</DIFF>
+        //     </OIL>
+        //     <OIL>
+        //             <TRADE_DT>20250503</TRADE_DT>
+        //             <PRODCD>C004</PRODCD>
+        //             <PRODNM>실내등유</PRODNM>
+        //             <PRICE>1309.95</PRICE>
+        //             <DIFF>+0.11</DIFF>
+        //     </OIL>
+        //     <OIL>
+        //             <TRADE_DT>20250503</TRADE_DT>
+        //             <PRODCD>K015</PRODCD>
+        //             <PRODNM>자동차용부탄</PRODNM>
+        //             <PRICE>1088.31</PRICE>
+        //             <DIFF>+0.29</DIFF>
+        //     </OIL>
+        // </RESULT>`;
+        //
+        // -- 오늘의 유가 가데이터 fin --
 
         // xml2js로 XML → JS 객체 변환
         const xmlObj = await parseStringPromise(oilRes);
@@ -85,49 +88,53 @@ export async function load({ locals }) {
         const updatedFavorites = await Promise.all(
             favorites.map(async (favorite) => {
                 const station_id = favorite.station_id;
-                // const req = await fetch(`https://www.opinet.co.kr/api/detailById.do?code=${SECRET_API_KEY}&id=${station_id}&out=xml`);
-                // const xmlText = await req.text();
-                const xmlText = `
-                <RESULT>
-                    <SCRIPT id="allow-copy_script"/>
-                    <script/>
-                    <script/>
-                    <OIL>
-                    <UNI_ID>A0000978</UNI_ID>
-                    <POLL_DIV_CO>GSC</POLL_DIV_CO>
-                    <GPOLL_DIV_CO> </GPOLL_DIV_CO>
-                    <OS_NM>플라트(주)서호주유소</OS_NM>
-                    <VAN_ADR>서울 양천구 신월동 52-1</VAN_ADR>
-                    <NEW_ADR>서울 양천구 남부순환로 317</NEW_ADR>
-                    <TEL>02-2602-5172</TEL>
-                    <SIGUNCD>0119</SIGUNCD>
-                    <LPG_YN>N</LPG_YN>
-                    <MAINT_YN>Y</MAINT_YN>
-                    <CAR_WASH_YN>Y</CAR_WASH_YN>
-                    <CVS_YN>N</CVS_YN>
-                    <KPETRO_YN>N</KPETRO_YN>
-                    <GIS_X_COOR>296517.01008</GIS_X_COOR>
-                    <GIS_Y_COOR>549138.09694</GIS_Y_COOR>
-                    <OIL_PRICE>
-                    <PRODCD>D047</PRODCD>
-                    <PRICE>1445</PRICE>
-                    <TRADE_DT>20250502</TRADE_DT>
-                    <TRADE_TM>080001</TRADE_TM>
-                    </OIL_PRICE>
-                    <OIL_PRICE>
-                    <PRODCD>B034</PRODCD>
-                    <PRICE>1944</PRICE>
-                    <TRADE_DT>20250502</TRADE_DT>
-                    <TRADE_TM>080001</TRADE_TM>
-                    </OIL_PRICE>
-                    <OIL_PRICE>
-                    <PRODCD>B027</PRODCD>
-                    <PRICE>1556</PRICE>
-                    <TRADE_DT>20250502</TRADE_DT>
-                    <TRADE_TM>080001</TRADE_TM>
-                    </OIL_PRICE>
-                    </OIL>
-                </RESULT>`;
+                const req = await fetch(`https://www.opinet.co.kr/api/detailById.do?code=${SECRET_API_KEY}&id=${station_id}&out=xml`);
+                const xmlText = await req.text();
+
+                // -- 즐겨찾기 주유소 가데이터 --
+                // const xmlText = `
+                // <RESULT>
+                //     <SCRIPT id="allow-copy_script"/>
+                //     <script/>
+                //     <script/>
+                //     <OIL>
+                //     <UNI_ID>A0000978</UNI_ID>
+                //     <POLL_DIV_CO>GSC</POLL_DIV_CO>
+                //     <GPOLL_DIV_CO> </GPOLL_DIV_CO>
+                //     <OS_NM>플라트(주)서호주유소</OS_NM>
+                //     <VAN_ADR>서울 양천구 신월동 52-1</VAN_ADR>
+                //     <NEW_ADR>서울 양천구 남부순환로 317</NEW_ADR>
+                //     <TEL>02-2602-5172</TEL>
+                //     <SIGUNCD>0119</SIGUNCD>
+                //     <LPG_YN>N</LPG_YN>
+                //     <MAINT_YN>Y</MAINT_YN>
+                //     <CAR_WASH_YN>Y</CAR_WASH_YN>
+                //     <CVS_YN>N</CVS_YN>
+                //     <KPETRO_YN>N</KPETRO_YN>
+                //     <GIS_X_COOR>296517.01008</GIS_X_COOR>
+                //     <GIS_Y_COOR>549138.09694</GIS_Y_COOR>
+                //     <OIL_PRICE>
+                //     <PRODCD>D047</PRODCD>
+                //     <PRICE>1445</PRICE>
+                //     <TRADE_DT>20250502</TRADE_DT>
+                //     <TRADE_TM>080001</TRADE_TM>
+                //     </OIL_PRICE>
+                //     <OIL_PRICE>
+                //     <PRODCD>B034</PRODCD>
+                //     <PRICE>1944</PRICE>
+                //     <TRADE_DT>20250502</TRADE_DT>
+                //     <TRADE_TM>080001</TRADE_TM>
+                //     </OIL_PRICE>
+                //     <OIL_PRICE>
+                //     <PRODCD>B027</PRODCD>
+                //     <PRICE>1556</PRICE>
+                //     <TRADE_DT>20250502</TRADE_DT>
+                //     <TRADE_TM>080001</TRADE_TM>
+                //     </OIL_PRICE>
+                //     </OIL>
+                // </RESULT>`;
+                // -- 즐겨찾기 주유소 가데이터 fin --
+
                 const xmlObj = await parseStringPromise(xmlText);
 
                 const oil = xmlObj.RESULT.OIL[0].OIL_PRICE.map((oil) => ({

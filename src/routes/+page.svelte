@@ -25,7 +25,7 @@
 				
 				if (data.success) {
 					// 로그인 성공 후 홈으로 이동
-					goto('/home');
+					goto('/home', { replaceState: true });
 				} else {
 					throw new Error(data.error || 'GitHub 로그인 실패');
 				}

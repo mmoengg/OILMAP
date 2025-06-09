@@ -3,7 +3,8 @@
 
 	export let data 
 
-	const userData = data.user
+	const resUser = data.user
+	console.log('resUser', resUser)
 
 	const mainOils = data.oil.map((item) => {
 		if (item.prodName === '휘발유' || item.prodName === '자동차용경유') {
@@ -13,6 +14,7 @@
 		}
 	}).filter((item) => item !== undefined)
 
+	console.log('mainOils', mainOils)
 </script>
   
 <section class="home_container">
@@ -21,24 +23,24 @@
 		<div class="profile"></div>
 	</div>
 	<div class="price_wrap">
-		<div class="price_title">유가</div>
+		<div class="price_title">유가 <p>{mainOils[0].tradeDate.slice(0, 4) + '-' + mainOils[0].tradeDate.slice(4, 6) + '-' + mainOils[0].tradeDate.slice(6, 8)}</p> </div>
 		<ul class="price_list">
 			{#each mainOils as item}
 				<li class="price_item">
 					<div class="name">{item.prodName}</div>
 					<div class="values">
-						<span class="rate">{item.diff}</span>
 						<span class="price">{item.price}원/L</span>
+						<span class="rate">{item.diff}</span>
 					</div>
 				</li>
 			{/each}
 		</ul>
 	</div>
 	<div class="favorites_wrap">
-		<div class="favorites_title">관심 <span class="title_number">{userData.favorites?.length}</span></div>
+		<div class="favorites_title">관심 <span class="title_number">{resUser.favorites?.length}</span></div>
 		<ul class="favorites_list">
-			{#if userData.favorites?.length > 0}
-				{#each userData.favorites as station}
+			{#if resUser.favorites?.length > 0}
+				{#each resUser.favorites as station}
 					<FavoritesStation item={station} />
 				{/each}
 			{:else}
@@ -92,11 +94,19 @@
 		font-weight: 900;
 		text-align: left;
 		display: flex;
+		align-items: center;
 		gap: 6px;
+	}
+	.price_title p {
+		padding-top: 1px;
+		font-size: 14px;
+		font-weight: 400;
+		color: var(--color-blue-700);
 	}
 	.price_list {
 		width: 100%;
 		display: flex;
+		flex-direction: column;
 		gap: 14px;
 	}
 	.price_list .price_item {
@@ -116,11 +126,13 @@
 		font-size: 14px;
 	}
 	.price_item .values {
+		width: 100%;
 		font-size: 18px;
+		font-weight: 700;
 		display: flex;
-		align-items: start;
+		align-items: center;
 		justify-content: space-between;
-		flex-direction: column;
+		/*flex-direction: column;*/
 		gap: 6px;
 	}
 	.price_item .values .rate {

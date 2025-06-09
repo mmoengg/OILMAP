@@ -26,4 +26,14 @@
 		align-items: start;
 		justify-content: center;
 	}
+	.main_container::-webkit-scrollbar {
+		width: 0px;
+		height: 0px;
+		background: transparent;
+	}
+	.main_content::-webkit-scrollbar {
+		width: 0px;
+		height: 0px;
+		background: transparent;
+	}
 </style>
