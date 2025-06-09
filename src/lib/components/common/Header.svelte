@@ -4,13 +4,14 @@
 
 	export let title = 'Header Title';
 	export let back = false;
+	export let callFn = () => {goto('/home')};
 </script>
 
 <div class="title_container">
 	<div class="left">
 		{#if back}
 			<div class="button_wrap">
-				<button type="button" on:click={() => goto('/home')}></button>
+				<button type="button" on:click={callFn}></button>
 			</div>
 		{/if}
 	</div>

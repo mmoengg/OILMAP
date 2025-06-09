@@ -1,33 +1,56 @@
 <script>
 	import Header from '$lib/components/common/Header.svelte';
 	import HistoryContent from '$lib/components/history/HistoryContent.svelte';
+	import FuelHistoryForm from '$lib/components/history/FuelHistoryForm.svelte';
+	import {onMount} from "svelte";
 
 	export let data;
 
-	$: history = data?.history || [];
+	let resUser = data.user;
+	let show = true
+	let showForm = false;
+
+	const loadList = async () => {
+		try {
+			const res = await fetch('/api/history', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ userId: resUser.uid })
+			});
+			if (!res.ok) {
+				throw new Error('Failed to load history');
+			}
+			const result = await res.json();
+			data.history = result.history;
+		} catch (error) {
+			console.error('Error loading history:', error);
+		}
+	}
 </script>
 
-<section class="history_container">
-	<Header title="주유 기록" back={true} />
-	<div class="content_wrap">
-		<ul class="history_list">
-			<HistoryContent />
-			<HistoryContent />
-			<HistoryContent />
-			<HistoryContent />
-			<HistoryContent />
-			<HistoryContent />
-			<HistoryContent />
-			<HistoryContent />
-		</ul>
-	</div>
-	<button type="button" class="buttn_add">+</button>
 
-<!-- {#if history.length > 0} -->
-	<!-- {:else} -->
-	<!-- <p>이력이 없습니다.</p> -->
-<!-- {/if} -->
+{#if show}
+<section class="history_container">
+	{#if showForm}
+		<FuelHistoryForm user={resUser} bind:showForm {loadList} />
+	{/if}
+	<Header title="주유 기록" back={true} />
+		<div class="content_wrap">
+			<ul class="history_list">
+			{#if data.history.length > 0}
+						{#each data.history as item (item.id)}
+							<HistoryContent items={item} />
+						{/each}
+			{:else}
+				<p>이력이 없습니다.</p>
+			{/if}
+			</ul>
+		</div>
+		<button type="button" class="buttn_add" on:click={() => 
+			{showForm = !showForm}}>+</button>
+
 </section>
+{/if}
 
 <style>
 	.history_container {

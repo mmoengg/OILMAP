@@ -6,33 +6,7 @@ export async function load({ locals }) {
         const { uid } = locals.user;
 
         /* 실제 데이터 사용 시 */
-        const historySnap = await db.collection('users').doc(uid).collection('histories').orderBy('date', 'desc').limit(10).get();
 
-        function serializeFirestoreData(obj) {
-            if (Array.isArray(obj)) {
-                return obj.map(serializeFirestoreData);
-            }
-            if (obj && typeof obj === 'object') {
-                // Timestamp 객체인지 확인
-                if (typeof obj.toDate === 'function') {
-                    return obj.toDate().toISOString();
-                }
-                const newObj = {};
-                for (const key in obj) {
-                    newObj[key] = serializeFirestoreData(obj[key]);
-                }
-                return newObj;
-            }
-            return obj;
-        }
-
-        const history = historySnap.docs.map(doc => {
-            const data = doc.data();
-            return {
-                ...serializeFirestoreData(data),
-                id: doc.id
-            };
-        });
 
         /* 가데이터 사용 시 */
         // const history = [
@@ -60,7 +34,6 @@ export async function load({ locals }) {
 
         return {
             user: locals.user,
-            history: history,
         };
     } catch (error) {
         console.error('데이터 불러오기 오류:', error);
