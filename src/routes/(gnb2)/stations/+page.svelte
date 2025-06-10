@@ -5,15 +5,16 @@
     import { onMount } from "svelte";
 
     export let data
-    console.log('data', data);
+
     const resUser = data.user;
-    $: stations = data.stations;
+    let stations;
     let searchName = '';
     let searchCategory = {
         prodcd: 'B027',
         radius: '3000',
         sort: '2'
     }
+    console.log('stations', stations)
 
     // proj4 정의
     proj4.defs("KATEC", "+proj=tmerc +lat_0=38 +lon_0=128 +k=0.9999 +x_0=400000 +y_0=600000 +ellps=bessel +units=m +no_defs +towgs84=-115.80,474.99,674.11,1.16,-2.31,-1.63,6.43");
@@ -54,7 +55,7 @@
                     latitude = pos.coords.latitude;
                     longitude = pos.coords.longitude;
                     // 좌표 변환
-                    [utmX, utmY] = proj4(wgs84, katec, [longitude, latitude]);
+                    [utmX, utmY] = proj4(wgs84, katec, [longitude, latitude]); // 여긴 경도 위도 순서
                     // console.log('WGS84:', latitude, longitude);
                     // console.log('UTM-K:', utmX, utmY);
                     resolve({ longitude, latitude, utmX, utmY });
@@ -181,16 +182,18 @@
         </div>
     </div>
 
-    <div class="map_box">
-        <Map {getLocation} bind:stations bind:latitude bind:longitude />
-    </div>
+    {#if latitude}
+        <div class="map_box">
+            <Map {getLocation} bind:stations bind:latitude bind:longitude />
+        </div>
+    {/if}
 
     {#if stations}
         <ul class="stations_list">
             {#if stations.length > 0}
                 {#each stations as station}
                     <li class="station_item">
-                        <a href={`/stations/${station.id}`} class="info_wrap">
+                        <a href={`/stations/${station.UNI_ID}`} class="info_wrap">
                             <div class="name">
                                 {station.OS_NM}
                                 <!--							<button type="button" class="favorite_icon" on:click={() => handleStationFavorite(station)}>-->
@@ -290,6 +293,12 @@
         gap: 24px;
         overflow-y: auto;
     }
+    .stations_list::-webkit-scrollbar {
+        width: 0px;
+        height: 0px;
+        background: transparent;
+    }
+
     .station_item {
         font-size: 14px;
         padding-bottom: 24px;
