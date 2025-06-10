@@ -23,7 +23,6 @@ export async function load({ locals }) {
             method: 'GET',
         });
         const oilRes = await oilReq.text();
-        console.log('SECRET_API_KEY', SECRET_API_KEY);
 
         // -- 오늘의 유가 가데이터 --
         // const oilRes = `

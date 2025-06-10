@@ -4,7 +4,7 @@
 
 	export let title = 'Header Title';
 	export let back = false;
-	export let callFn = () => {goto('/home')};
+	export let callFn = () => { goto('/home') };
 </script>
 
 <div class="title_container">
