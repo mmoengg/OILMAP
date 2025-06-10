@@ -57,7 +57,7 @@
                     [utmX, utmY] = proj4(wgs84, katec, [longitude, latitude]);
                     // console.log('WGS84:', latitude, longitude);
                     // console.log('UTM-K:', utmX, utmY);
-                    resolve({ latitude, longitude, utmX, utmY });
+                    resolve({ longitude, latitude, utmX, utmY });
                 },
                 (err) => {
                     errorMsg = err.message;
@@ -89,7 +89,7 @@
             }
             const result = await res.json();
             stations = result.stations;
-            console.log('search stations by location', stations);
+            // console.log('search stations by location', stations);
         } catch (error) {
             console.error('Error loading search stations by location:', error);
         }
@@ -182,7 +182,7 @@
     </div>
 
     <div class="map_box">
-        <Map {getLocation} bind:latitude bind:longitude/>
+        <Map {getLocation} bind:stations bind:latitude bind:longitude />
     </div>
 
     {#if stations}
