@@ -1,11 +1,19 @@
 import { SECRET_API_KEY } from "$env/static/private";
-import { db } from '$lib/firebase/firebase-admin';
+import { db, getDocs } from '$lib/firebase/firebase-admin';
 
 export async function load({ locals, params }) {
     try {
         if (!locals.user) return {};
         const { id } = params;
-        console.log('id', id);
+        const { uid } = locals.user;
+
+        /**
+         * 유저, 관심 주유소 정보 가져오기
+         */
+        const [userSnap, favoritesSnap] = await Promise.all([db.collection('users').doc(uid).get(), db.collection('users').doc(uid).collection('favorites').limit(10).get()]);
+
+        const user = userSnap.exists ? userSnap.data() : null;
+        let favorites = favoritesSnap.docs.map((doc) => ({ ...doc.data() }));
 
         /**
          * 상세 주유소 검색
@@ -18,6 +26,7 @@ export async function load({ locals, params }) {
 
         return {
             user: locals.user,
+            favorites: favorites,
             oil: oilRes.RESULT.OIL[0],
         };
     } catch (error) {

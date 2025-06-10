@@ -15,7 +15,7 @@ export async function POST({ request }) {
 
         return json( { success: true } );
     } catch (error) {
-        console.error('히스토리 불러오던 중 오류:', error);
+        console.error('관심 주유소 등록 중 오류:', error);
         return json({ success: false, error: error.message }, { status: 401 });
     }
 }

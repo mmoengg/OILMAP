@@ -9,7 +9,7 @@ export async function load({ locals }) {
         const { uid } = locals.user;
 
         /**
-         * 유저, 즐겨찾기 정보 가져오기
+         * 유저, 관심 주유소 정보 가져오기
          */
         const [userSnap, favoritesSnap] = await Promise.all([db.collection('users').doc(uid).get(), db.collection('users').doc(uid).collection('favorites').limit(10).get()]);
 

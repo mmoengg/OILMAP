@@ -177,9 +177,7 @@
 	}
 	.popup_container::-webkit-scrollbar,
 	.popup_wrap::-webkit-scrollbar {
-		width: 0px;
-		height: 0px;
-		background: transparent;
+		display: none;
 	}
 
 	.content_wrap {

@@ -62,6 +62,9 @@
 		flex-direction: column;
 		gap: 35px;
 	}
+	.home_container::-webkit-scrollbar {
+		display: none;
+	}
 
 	.logo_wrap{
 		width: 100%;

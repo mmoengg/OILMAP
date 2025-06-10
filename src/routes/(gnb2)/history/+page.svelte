@@ -82,15 +82,7 @@
 		gap: 25px;
 	}
 	.history_list::-webkit-scrollbar {
-		width: 0px;
-		height: 0px;
-		background: transparent;
-	}
-	.history_list::-webkit-scrollbar-thumb {
-		background: transparent;
-	}
-	.history_list::-webkit-scrollbar-track {
-		background: transparent;
+		display: none;
 	}
 
 	.buttn_add {

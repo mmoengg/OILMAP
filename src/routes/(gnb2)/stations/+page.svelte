@@ -117,29 +117,6 @@
         }
     };
 
-    /**
-     * 관심 주유소 추가
-     */
-    const handleStationFavorite = async (station) => {
-        event.preventDefault();
-
-        const { UNI_ID: id, OS_NM: name, POLL_DIV_CD: poll } = station;
-        try {
-            const res = await fetch('/api/stations/addFavorite', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ userId: resUser.uid, stationId: id, stationName: name, pollDivCd: poll })
-            });
-            if (!res.ok) {
-                throw new Error('Failed to load history');
-            }
-            const result = await res.json();
-            console.log('favorite stations', stations);
-        } catch (error) {
-            console.error('Error loading history:', error);
-        }
-    };
-
     onMount(async () => {
         await getLocation();
         await handleStationSearchByLocation();
@@ -294,9 +271,7 @@
         overflow-y: auto;
     }
     .stations_list::-webkit-scrollbar {
-        width: 0px;
-        height: 0px;
-        background: transparent;
+        display: none;
     }
 
     .station_item {
