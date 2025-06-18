@@ -3,8 +3,7 @@
 
 	export let data 
 
-	const resUser = data.user
-	console.log('resUser', resUser)
+	let resUser = data.user
 
 	const mainOils = data.oil.map((item) => {
 		if (item.prodName === '휘발유' || item.prodName === '자동차용경유') {
@@ -14,7 +13,7 @@
 		}
 	}).filter((item) => item !== undefined)
 
-	console.log('mainOils', mainOils)
+
 </script>
   
 <section class="home_container">
@@ -43,7 +42,7 @@
 		<ul class="favorites_list">
 			{#if resUser.favorites?.length > 0}
 				{#each resUser.favorites as station}
-					<FavoritesStation item={station} />
+					<FavoritesStation bind:resUser item={station} />
 				{/each}
 			{:else}
 				<li class="favorite_item_empty">관심 주유소가 없습니다.</li>

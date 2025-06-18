@@ -1,10 +1,11 @@
 import { SECRET_API_KEY } from '$env/static/private';
 import { db } from '$lib/firebase/firebase-admin';
+import { json } from '@sveltejs/kit';
 
-export async function load({ locals }) {
+export async function GET({ url }) {
     try {
-        if (!locals.user) return {};
-        const { uid } = locals.user;
+        const uid = url.searchParams.get('uid');
+        console.log('로그인 처리 중 uid:', uid);
 
         /**
          * 유저, 관심 주유소 정보 가져오기
@@ -41,6 +42,7 @@ export async function load({ locals }) {
                 const station_id = favorite.station_id;
                 const req = await fetch(`https://www.opinet.co.kr/api/detailById.do?code=${SECRET_API_KEY}&id=${station_id}&out=json`);
                 const jsonData = await req.json();
+                console.log('//////////// 오늘의 유가 정보:', jsonData.RESULT.OIL);
 
                 const oil = jsonData.RESULT.OIL[0].OIL_PRICE.map((oil) => ({
                     trade_tm: oil.TRADE_TM,
@@ -60,12 +62,14 @@ export async function load({ locals }) {
 
         favorites = updatedFavorites;
 
-        return {
+        console.log('///////////// 로그인 처리 완료:', { user, favorites, uid });
+
+        return json({
+            success: true,
             user: { ...user, favorites: favorites, uid: uid },
-            oil: oilArr,
-        };
+        });
     } catch (error) {
-        console.error('데이터 불러오기 오류:', error);
-        return { data: [] };
+        console.error('로그인 처리 중 오류:', error);
+        return json({ success: false, error: error.message }, { status: 401 });
     }
 }

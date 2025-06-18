@@ -1,6 +1,6 @@
 <script>
 	export let item;
-	// export let liked = false;
+	export let resUser;
 
 	/**
 	 * @description prodcd에 따라 아이콘을 변경하는 함수
@@ -22,6 +22,52 @@
 				return prodcd;
 		}
 	}
+
+	const handleDeleteFavorite = async () => {
+		try {
+			const req = await fetch('/api/stations/deleteFavorite', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ userId: resUser.uid, stationId: item.station_id })
+			});
+
+			if (!req.ok) {
+				throw new Error('Failed to delete favorite');
+			}
+
+			const result = await req.json();
+			if (result.success) {
+				handleGetUser();
+			} else {
+				console.error('즐겨찾기 삭제 실패:', result.message);
+			}
+		} catch (error) {
+			console.error('Error deleting favorite:', error);
+		}
+	};
+
+	const handleGetUser = async () => {
+		try {
+			const req = await fetch(`/api/auth/getUser?uid=${resUser.uid}`, {
+				method: 'GET',
+				headers: { 'Content-Type': 'application/json' },
+			});
+
+			if (!req.ok) {
+				throw new Error('Failed to fetch user data');
+			}
+			
+			const result = await req.json();
+			if (result.success) {
+				resUser = result.user;
+			} else {
+				console.error('유저 불러오기 실패:', result.message);
+			}
+		} catch (error) {
+			console.error('Error fetching user:', error);
+		}
+	};
+
 </script>
   
 <li class="favorite_item">
@@ -29,7 +75,7 @@
 	<div class="info_wrap">
 		<div class="name">
 			<span>{item.station_name}</span>
-			<button type="button" class="like active"></button>
+			<button type="button" class="like active" on:click={handleDeleteFavorite}></button>
 		</div>
 		<ul class="oil_list">
 			{#each item.oil_price as oil}
