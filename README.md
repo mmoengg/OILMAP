@@ -1,6 +1,6 @@
 # 유가 정보 파트너, OILMAP
 
-배포: <br />
+배포: https://oilmap.vercel.app <br />
 Test ID: <br />
 Test PW: <br />
 
