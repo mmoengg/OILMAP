@@ -44,57 +44,62 @@ Test PW: test123 <br />
 ├── .gitignore
 │
 ├── static
-│    └── fonts
+│    ├── fonts
 │    └── images
 │        └── icon
 │             .
 │             .
 └── src
-     ├── lib
-     │     └── components
-     │     │    └── common
-     │     │    │    └── Header.svelte
-     │     │    └── history
-     │     │    └── home
-     │     │    └── stations
-     │     └── firebase
-     │     └── js
-     │     └── store
-     │     └── styles
-     ├── routes
-     │     └── (api)
-     │     │    └── api
-     │     └── (gnb1)
-     │     │    └── home
-     │     │    │    └── +page.server.js
-     │     │    │    └── +page.svelte   
-     │     │    └── favorites
-     │     │    └── map
-     │     │    └── news
-     │     │    └── prices
-     │     │    └── profile
-     │     │    └── settings
-     │     │    └── signup
-     │     │    └── +layout.svelte
-     │     └── (gnb2)
-     │     │    └── history
-     │     │    │    └── +page.server.js
-     │     │    │    └── +page.svelte
-     │     │    └── stations
-     │     │    └── +layout.svelte
-     │     └── +page.server.js
-     │     └── +page.svelte
-     └── app.html
-     └── hooks.server.js
+│    ├── lib
+│    │     └── components
+│    │     │    ├── common
+│    │     │    │    └── Header.svelte
+│    │     │    ├── history
+│    │     │    ├── home
+│    │     │    └── stations
+│    │     ├── firebase
+│    │     ├── js
+│    │     ├── store
+│    │     └── styles
+│    ├── routes
+│    │     ├── (api)
+│    │     │    └── api
+│    │     ├── (gnb1)
+│    │     │    ├── home
+│    │     │    │    ├── +page.server.js
+│    │     │    │    └── +page.svelte   
+│    │     │    ├── favorites
+│    │     │    ├── map
+│    │     │    ├── news
+│    │     │    ├── prices
+│    │     │    ├── profile
+│    │     │    ├── settings
+│    │     │    ├── signup
+│    │     │    └── +layout.svelte
+│    │     ├── (gnb2)
+│    │     │    ├── history
+│    │     │    │    ├── +page.server.js
+│    │     │    │    └── +page.svelte
+│    │     │    ├── stations
+│    │     │    └── +layout.svelte
+│    │     ├── +page.server.js
+│    │     └── +page.svelte
+│    ├── app.html
+└──  └── hooks.server.js
 ```
 
 <br />
 
 ## 페이지별 기능
-|로그인|홈|
-|------|--|
-|![image](https://github.com/user-attachments/assets/32d4ad98-9337-4a2e-a18c-cbab44dc11b9)|![image](https://github.com/user-attachments/assets/9bca7151-da21-4513-a98a-2fe6b1a15f30)|
-|이메일 및 깃허브 로그인|로그인 후 홈 화면|
+|로그인|로그아웃|
+|------|--------|
+|![image](https://github.com/user-attachments/assets/32d4ad98-9337-4a2e-a18c-cbab44dc11b9)|![Honeycam 2025-06-23 14-11-46](https://github.com/user-attachments/assets/920dc779-3ed2-4c58-bf44-f21bfae7e3fc)
+|이메일 및 깃허브 로그인|로그인 후 홈 화면에서 로그아웃|
+
+|홈|관심 주유소|
+|--|-----------|
+|![image](https://github.com/user-attachments/assets/9bca7151-da21-4513-a98a-2fe6b1a15f30)|![Honeycam 2025-06-23 14-14-05](https://github.com/user-attachments/assets/df2ddfd1-21e2-4cea-a09f-a03b11ac6733)|
+|로그인 후 홈 화면|홈 관심 주유소 리스트 및 관심 취소|
 
 |주유소|주유소 상세|
 |------|-----------|
