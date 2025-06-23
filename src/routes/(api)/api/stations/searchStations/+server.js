@@ -15,7 +15,7 @@ export async function POST({ request }) {
         const searchRes = await searchReq.json();
         // console.log('============ searchRes', searchRes.RESULT.OIL);
 
-        const stationsSnap = await db.collection('users').doc(uid).collection('histories').orderBy('date', 'desc').limit(10).get();
+        const stationsSnap = await db.collection('users').doc(uid).collection('histories').orderBy('date', 'asc').limit(10).get();
 
         // function serializeFirestoreData(obj) {
         //     if (Array.isArray(obj)) {

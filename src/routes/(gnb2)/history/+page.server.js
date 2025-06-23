@@ -6,7 +6,7 @@ export async function load({ locals }) {
         const { uid } = locals.user;
 
         /* 실제 데이터 사용 시 */
-        const historySnap = await db.collection('users').doc(uid).collection('histories').orderBy('date', 'desc').limit(10).get();
+        const historySnap = await db.collection('users').doc(uid).collection('histories').where('delYn', '==', 'N').orderBy('date', 'asc').get();
 
         function serializeFirestoreData(obj) {
             if (Array.isArray(obj)) {

@@ -19,7 +19,6 @@
 
     onMount(async () => {
         await getLocation();
-        console.log('ㅇㅇ stations', stations);
 
         // 이미 로드된 경우 바로 지도 생성
         if (window.kakao && window.kakao.maps) {
@@ -47,21 +46,21 @@
     const initMap = () => {
         const container = document.getElementById('map');
         if (!container) {
-            console.log('container 없음');
+            // console.log('container 없음');
             return;
         }
         const options = {
             center: new kakao.maps.LatLng(latitude, longitude),
             level: 6
         };
-        console.log('지도 생성', options);
+        // console.log('지도 생성', options);
         map = new kakao.maps.Map(container, options);
     }
 
     const initMarkers = () => {
         const container = document.getElementById('map');
         if (!container) {
-            console.log('container 없음');
+            // console.log('container 없음');
             return;
         }
 

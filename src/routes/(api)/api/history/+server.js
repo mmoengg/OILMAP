@@ -6,7 +6,7 @@ export async function POST({ request }) {
         const reqJson = await request.json();
         const uid = reqJson.userId
 
-        const historySnap = await db.collection('users').doc(uid).collection('histories').orderBy('date', 'desc').limit(10).get();
+        const historySnap = await db.collection('users').doc(uid).collection('histories').where('delYn', '==', 'N').orderBy('date', 'asc').limit(10).get();
 
         function serializeFirestoreData(obj) {
             if (Array.isArray(obj)) {

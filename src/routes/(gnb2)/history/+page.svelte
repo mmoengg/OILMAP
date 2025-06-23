@@ -2,13 +2,25 @@
 	import Header from '$lib/components/common/Header.svelte';
 	import HistoryContent from '$lib/components/history/HistoryContent.svelte';
 	import FuelHistoryForm from '$lib/components/history/FuelHistoryForm.svelte';
-	import {onMount} from "svelte";
 
 	export let data;
 
 	let resUser = data.user;
 	let show = true
 	let showForm = false;
+	let title = '';
+	
+	let formData = {
+		id: '',
+		date: new Date().toString().slice(0, 21),
+		amount: null,
+		stationName: '',
+		stationLiter: null,
+		stationOil: '휘발유',
+		stationPrice: null,
+		cleaningCost: null,
+		memo: ''
+	};
 
 	const loadList = async () => {
 		try {
@@ -26,29 +38,43 @@
 			console.error('Error loading history:', error);
 		}
 	}
+
+	const handleFormToggle = () => {
+		showForm = !showForm;
+		title = showForm ? '신규 주유 기록' : '';
+		formData = {
+			id: '',
+			date: new Date().toString().slice(0, 21),
+			amount: null,
+			stationName: '',
+			stationLiter: null,
+			stationOil: '휘발유',
+			stationPrice: null,
+			cleaningCost: null,
+			memo: ''
+		};
+	};
 </script>
 
 
 {#if show}
 <section class="history_container">
 	{#if showForm}
-		<FuelHistoryForm user={resUser} bind:showForm {loadList} />
+		<FuelHistoryForm user={resUser} bind:showForm {loadList} title={title} bind:formData />
 	{/if}
 	<Header title="주유 기록" back={true} />
 		<div class="content_wrap">
 			<ul class="history_list">
 			{#if data.history.length > 0}
-						{#each data.history as item (item.id)}
-							<HistoryContent items={item} />
-						{/each}
+				{#each data.history as item (item.id)}
+					<HistoryContent items={item} bind:showForm bind:title bind:formData />
+				{/each}
 			{:else}
 				<p>이력이 없습니다.</p>
 			{/if}
 			</ul>
 		</div>
-		<button type="button" class="buttn_add" on:click={() => 
-			{showForm = !showForm}}>+</button>
-
+		<button type="button" class="buttn_add" on:click={handleFormToggle}>+</button>
 </section>
 {/if}
 

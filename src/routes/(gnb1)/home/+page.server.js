@@ -36,29 +36,32 @@ export async function load({ locals }) {
          * 1. 즐겨찾기한 주유소의 ID를 가져온다.
          * 2. 즐겨찾기한 주유소의 ID를 통해 오늘의 유가 정보를 가져온다.
          */
-        const updatedFavorites = await Promise.all(
-            favorites.map(async (favorite) => {
-                const station_id = favorite.station_id;
-                const req = await fetch(`https://www.opinet.co.kr/api/detailById.do?code=${SECRET_API_KEY}&id=${station_id}&out=json`);
-                const jsonData = await req.json();
+        if (favorites.length > 0) {
+          const updatedFavorites = await Promise.all(
+                favorites.map(async (favorite) => {
+                    const station_id = favorite.station_id;
+                    const req = await fetch(`https://www.opinet.co.kr/api/detailById.do?code=${SECRET_API_KEY}&id=${station_id}&out=json`);
+                    const jsonData = await req.json();
 
-                const oil = jsonData.RESULT.OIL[0].OIL_PRICE.map((oil) => ({
-                    trade_tm: oil.TRADE_TM,
-                    trade_dt: oil.TRADE_DT,
-                    price: oil.PRICE,
-                    prodcd: oil.PRODCD,
-                })).sort((a, b) => {
-                    return a.prodcd.localeCompare(b.prodcd);
-                });
+                    const oil = jsonData.RESULT?.OIL[0]?.OIL_PRICE.map((oil) => ({
+                        trade_tm: oil.TRADE_TM,
+                        trade_dt: oil.TRADE_DT,
+                        price: oil.PRICE,
+                        prodcd: oil.PRODCD,
+                    })).sort((a, b) => {
+                        return a.prodcd.localeCompare(b.prodcd);
+                    });
 
-                return {
-                    ...favorite,
-                    oil_price: oil,
-                };
-            })
-        );
+                    return {
+                        ...favorite,
+                        oil_price: oil,
+                    };
+                })
+            );
+            
+            favorites = updatedFavorites;
+        }
 
-        favorites = updatedFavorites;
 
         return {
             user: { ...user, favorites: favorites, uid: uid },

@@ -4,8 +4,9 @@
 	export let data 
 
 	let resUser = data.user
+	let userFlag = false
 
-	const mainOils = data.oil.map((item) => {
+	const mainOils = data?.oil?.map((item) => {
 		if (item.prodName === '휘발유' || item.prodName === '자동차용경유') {
 			return {
 			...item,
@@ -14,17 +15,50 @@
 	}).filter((item) => item !== undefined)
 
 
+	const logout = async () => {
+
+		const req = await fetch('/api/auth/logout', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		});
+		if (!req.ok) {
+			alert('로그아웃에 실패했습니다. 다시 시도해주세요.');
+			return;
+		}
+		const res = await req.json();
+		if (res.success) {
+			alert('로그아웃 되었습니다.');
+			window.location.href = '/';
+		} else {
+			alert('로그아웃에 실패했습니다. 다시 시도해주세요.');
+		}
+
+	}
+
 </script>
   
 <section class="home_container">
 	<div class="logo_wrap">
 		<div class="logo">OilMap</div>
-		<div class="profile">
-			<img src={resUser.profile.photo_url} alt="profile" />
-		</div>
+		<button class="profile" on:click={() => userFlag = !userFlag}>
+			<img src={resUser?.profile?.photo_url} alt="profile"  />
+		</button>
+		{#if userFlag}
+			<ul class="profile_menu">
+				<!-- <li>내 정보</li> -->
+				<li>
+					<button type="button" on:click={logout}>
+						로그아웃
+					</button>
+				</li>
+			</ul>
+		{/if}
 	</div>
 	<div class="price_wrap">
-		<div class="price_title">유가 <p>{mainOils[0].tradeDate.slice(0, 4) + '-' + mainOils[0].tradeDate.slice(4, 6) + '-' + mainOils[0].tradeDate.slice(6, 8)}</p> </div>
+		{#if mainOils}
+		<div class="price_title">유가 <p>{mainOils[0]?.tradeDate?.slice(0, 4) + '-' + mainOils[0]?.tradeDate?.slice(4, 6) + '-' + mainOils[0]?.tradeDate?.slice(6, 8)}</p> </div>
 		<ul class="price_list">
 			{#each mainOils as item}
 				<li class="price_item">
@@ -36,11 +70,12 @@
 				</li>
 			{/each}
 		</ul>
+		{/if}
 	</div>
 	<div class="favorites_wrap">
-		<div class="favorites_title">관심 <span class="title_number">{resUser.favorites?.length}</span></div>
+		<div class="favorites_title">관심 <span class="title_number">{resUser?.favorites?.length}</span></div>
 		<ul class="favorites_list">
-			{#if resUser.favorites?.length > 0}
+			{#if resUser?.favorites?.length > 0}
 				{#each resUser.favorites as station}
 					<FavoritesStation bind:resUser item={station} />
 				{/each}
@@ -66,6 +101,7 @@
 	}
 
 	.logo_wrap{
+		position: relative;
 		width: 100%;
 		height: 50px;
 		margin-bottom: 10px;
@@ -85,6 +121,26 @@
 		border-radius: 999px;
 		overflow: hidden;
 		cursor: pointer;
+	}
+	.logo_wrap .profile img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		background-color: aliceblue;
+		border-radius: 999px;
+	}
+	.logo_wrap .profile_menu {
+		position: absolute;
+		top: 45px;
+		right: 0;
+		padding: 15px 20px;
+		background-color: var(--color-white);
+		border-radius: 12px;
+		box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+	}
+	.profile_menu button {
+		padding: 0;
+		font-size: 14px;
 	}
 
 	.price_wrap {

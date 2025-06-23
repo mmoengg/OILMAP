@@ -15,7 +15,7 @@
 			case 'B034':
 				return '고';
 			case 'C004':
-				return '등유';
+				return '등';
 			case 'K015':
 				return '부';
 			default:

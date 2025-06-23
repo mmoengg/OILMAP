@@ -36,7 +36,7 @@
 		display: flex;
 		align-items: start;
 		justify-content: center;
-		overflow-y: auto;
+		overflow: hidden;
 	}
 
 	.nav_list {

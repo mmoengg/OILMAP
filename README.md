@@ -1,8 +1,8 @@
 # 유가 정보 파트너, OILMAP
 
 배포: https://oilmap.vercel.app <br />
-Test ID: <br />
-Test PW: <br />
+Test ID: test123@test.co.kr <br />
+Test PW: test123 <br />
 
 <br />
 

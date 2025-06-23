@@ -1,26 +1,16 @@
 <script>
 	import Header from '$lib/components/common/Header.svelte';
 	import { fly } from 'svelte/transition';
-	import { addHistory } from "$lib/store/history/historyStore.js";
+	import { addHistory, editHistory, deleteHistory } from "$lib/store/history/historyStore.js";
+	import { v4 as uuidv4 } from 'uuid';
 
 	export let user = {};
+	export let title = '';
 	export let showForm = false;
 	export let loadList = () => {};
+	export let formData;
 
-	let formData = {
-		date: new Date().toString().slice(0, 21),
-		amount: null,
-		stationName: '',
-		stationLiter: null,
-		stationOil: '휘발유',
-		stationPrice: null,
-		cleaningCost: null,
-		memo: ''
-	};
-
-	const handleClick =  async() => {
-		console.log(formData);
-
+	const handleInsertClick =  async() => {
 		if (!formData.stationName || !formData.date || !formData.amount || !formData.stationPrice || !formData.stationLiter) {
 			alert('모든 필드를 입력해주세요.');
 			return;
@@ -58,22 +48,62 @@
 			return;
 		}
 
-		try {
-			await addHistory(user.uid, {
-				id: user.uid,
-				date: formData.date,
-				amount: formData.amount,
-				station_liter: formData.stationLiter,
-				station_name: formData.stationName,
-				station_oil: formData.stationOil,
-				station_poll: '',
-				station_price: formData.stationPrice,
-			});
-			alert('주유 기록이 저장되었습니다!');
-			loadList(); // 목록 새로고침
-			showForm = false; // 폼 닫기
-		} catch (e) {
-			alert('저장 실패: ' + e.message);
+		if (title === '신규 주유 기록') {
+			try {
+				await addHistory(user.uid, {
+					id: uuidv4(),
+					date: formData.date,
+					amount: formData.amount,
+					station_liter: formData.stationLiter,
+					station_name: formData.stationName,
+					station_oil: formData.stationOil,
+					station_poll: '',
+					station_price: formData.stationPrice,
+					cleaning_cost: formData.cleaningCost,
+					memo: formData.memo
+				});
+				alert('주유 기록이 저장되었습니다!');
+				loadList(); // 목록 새로고침
+				showForm = false; // 폼 닫기
+			} catch (e) {
+				alert('저장 실패: ' + e.message);
+			}
+		} else {
+			try {
+				await editHistory(user.uid, formData.id, {
+					date: formData.date,
+					amount: formData.amount,
+					station_liter: formData.stationLiter,
+					station_name: formData.stationName,
+					station_oil: formData.stationOil,
+					station_poll: '',
+					station_price: formData.stationPrice,
+					cleaning_cost: formData.cleaningCost,
+					memo: formData.memo
+				});
+				alert('주유 기록이 수정되었습니다!');
+				loadList(); // 목록 새로고침
+				showForm = false; // 폼 닫기
+			} catch (e) {
+				alert('수정 실패: ' + e.message);
+			}
+		}
+	};
+
+	const handleDeleteClick = async () => {
+		if (!formData.id) {
+			alert('삭제할 기록을 선택해주세요.');
+			return;
+		}
+		if (confirm('정말로 이 기록을 삭제하시겠습니까?')) {
+			try {
+				await deleteHistory(user.uid, formData.id);
+				alert('주유 기록이 삭제되었습니다!');
+				loadList(); // 목록 새로고침
+				showForm = false; // 폼 닫기
+			} catch (e) {
+				alert('삭제 실패: ' + e.message);
+			}
 		}
 	};
 </script>
@@ -81,7 +111,7 @@
 <div class="popup_container">
 	<div class="popup_wrap" in:fly={{ y: 200, duration: 600 }}
 	out:fly={{ y: 200, duration: 600 }}>
-		<Header title="신규 기록" back={true} callFn={() => showForm = !showForm} />
+		<Header title={title} back={true} callFn={() => showForm = !showForm} />
 		<div class="content_wrap">
 <!--			<h1 class="station_name">-->
 <!--				<input type="text" value="">-->
@@ -143,7 +173,8 @@
 				</li>
 			</ul>
 			<div class="button_wrap">
-				<button type="button" on:click={handleClick}>추가</button>
+					<button type="button" on:click={handleInsertClick}>저장</button>
+					<button type="button" class="error" on:click={handleDeleteClick}>삭제</button>
 			</div>
 		</div>
 	</div>
@@ -219,6 +250,7 @@
 		/* height: 100%; */
 		font-size: 16px;
 		font-weight: 400;
+		color: #000;
 		border-bottom: 1px solid var(--color-black-10);
 		padding: 8px;
 		box-sizing: border-box;
@@ -279,17 +311,18 @@
 
 	.button_wrap {
 		width: 100%;
-		min-height: 50px;
 		border-radius: 99px;
 		color: var(--color-white);
-		background: var(--color-blue-end);
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		flex-direction: column;
+		gap: 15px;
 	}
 	.button_wrap button {
 		width: 100%;
 		height: 100%;
+		min-height: 50px;
 		border: none;
 		font-size: 16px;;
 		color: var(--color-white);
@@ -297,4 +330,10 @@
 		border-radius: 99px;
 		cursor: pointer;
 	}
+	.button_wrap button.error {
+		color: #de6f6f;
+		border: 1px solid #de6f6f;
+		background-color: #fff;
+	}
+
 </style>

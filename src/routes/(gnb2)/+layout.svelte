@@ -11,8 +11,8 @@
 <style>
 	.main_container {
 		position: relative;
-		width: 100vw;
-		height: 100vh;
+		width: 100dvw;
+		height: 100dvh;
 		background: var(--color-text);
 	}
 	.main_content {
@@ -21,6 +21,7 @@
 		max-width: 691px;
 		margin: 0 auto;
 		padding: 16px;
+		overflow: hidden;
 		background: var(--color-background);
 		display: flex;
 		align-items: start;
