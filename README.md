@@ -91,6 +91,31 @@ Test PW: test123 <br />
 <br />
 
 ## 페이지별 기능
+|로그인|홈|
+|------|--|
+|![image](https://github.com/user-attachments/assets/32d4ad98-9337-4a2e-a18c-cbab44dc11b9)|![image](https://github.com/user-attachments/assets/9bca7151-da21-4513-a98a-2fe6b1a15f30)|
+|이메일 및 깃허브 로그인|로그인 후 홈 화면|
+
+|주유소|주유소 상세|
+|------|-----------|
+|![Honeycam 2025-06-23 13-39-03](https://github.com/user-attachments/assets/e8c8bf24-41fe-4576-97a2-4ba747372b97)|![Honeycam 2025-06-23 13-43-01](https://github.com/user-attachments/assets/b3e62e3d-d220-4236-8518-fe15b64a47ce)|
+|위치 기반 주유소 추천 및 카카오 맵 출력|카카오 맵 핀 클릭 및 리스트 클릭 시 주유소 상세 출력, 관심 주유소 추가 삭제 기능
+
+|주유소 검색(주유소명)|주유소 검색(필터)|
+|---------------------|-----------------|
+|![Honeycam 2025-06-23 13-45-03](https://github.com/user-attachments/assets/dc5c6c35-9af0-4558-b1f1-832daa4a53cd)|![Honeycam 2025-06-23 14-03-57](https://github.com/user-attachments/assets/b227ed0b-c4fd-4563-82c1-6515b82d3203)|
+|주유소명 검색 및 결과 출력|유종, 거리별, 정렬 필터 결과 출력|
+
+|주유 기록|신규 주유 기록|
+|---------|--------------|
+|![image](https://github.com/user-attachments/assets/e58dfb08-7dd5-47e7-b762-ed700014d29d)|![Honeycam 2025-06-23 14-05-44](https://github.com/user-attachments/assets/97813b0b-a8bc-4601-a6ef-bcad855e4bb4)|
+|입력한 주유 기록 히스토리|신규 주유 정보 기록하기|
+
+|주유 기록 수정|주유 기록 삭제|
+|--------------|--------------|
+|![Honeycam 2025-06-23 14-07-34](https://github.com/user-attachments/assets/4645b859-2117-4f8a-991c-06e2d8ab7185)|![Honeycam 2025-06-23 14-08-16](https://github.com/user-attachments/assets/7b9f3394-7edb-4ba9-863e-6f933c9fcc07)|
+|입력한 주유 기록 수정하기|주유 기록 삭제하기|
+
 
 
 
