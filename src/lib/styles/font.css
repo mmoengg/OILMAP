@@ -2,56 +2,56 @@
 
 @font-face {
     font-family: 'Pretendard';
-    src: local('Pretendard Thin'), local('Pretendard-Thin'), url('/static/fonts/Pretendard/woff2/Pretendard-Thin.woff2') format('woff2'), url('/static/fonts/Pretendard/woff/Pretendard-Thin.woff') format('woff');
+    src: local('Pretendard Thin'), local('Pretendard-Thin'), url('/fonts/Pretendard/woff2/Pretendard-Thin.woff2') format('woff2'), url('/fonts/Pretendard/woff/Pretendard-Thin.woff') format('woff');
     font-weight: 100;
     font-style: normal;
     font-display: fallback;
 }
 @font-face {
     font-family: 'Pretendard';
-    src: local('Pretendard Light'), local('Pretendard-Light'), url('/static/fonts/Pretendard/woff2/Pretendard-Light.woff2') format('woff2'), url('/static/fonts/Pretendard/woff/Pretendard-Light.woff') format('woff');
+    src: local('Pretendard Light'), local('Pretendard-Light'), url('/fonts/Pretendard/woff2/Pretendard-Light.woff2') format('woff2'), url('/fonts/Pretendard/woff/Pretendard-Light.woff') format('woff');
     font-weight: 300;
     font-style: normal;
     font-display: fallback;
 }
 @font-face {
     font-family: 'Pretendard';
-    src: local('Pretendard Regular'), local('Pretendard-Regular'), url('/static/fonts/Pretendard/woff2/Pretendard-Regular.woff2') format('woff2'), url('/static/fonts/Pretendard/woff/Pretendard-Regular.woff') format('woff');
+    src: local('Pretendard Regular'), local('Pretendard-Regular'), url('/fonts/Pretendard/woff2/Pretendard-Regular.woff2') format('woff2'), url('/fonts/Pretendard/woff/Pretendard-Regular.woff') format('woff');
     font-weight: 400;
     font-style: normal;
     font-display: fallback;
 }
 @font-face {
     font-family: 'Pretendard';
-    src: local('Pretendard Medium'), local('Pretendard-Medium'), url('/static/fonts/Pretendard/woff2/Pretendard-Medium.woff2') format('woff2'), url('/static/fonts/Pretendard/woff/Pretendard-Medium.woff') format('woff');
+    src: local('Pretendard Medium'), local('Pretendard-Medium'), url('/fonts/Pretendard/woff2/Pretendard-Medium.woff2') format('woff2'), url('/fonts/Pretendard/woff/Pretendard-Medium.woff') format('woff');
     font-weight: 500;
     font-style: normal;
     font-display: fallback;
 }
 @font-face {
     font-family: 'Pretendard';
-    src: local('Pretendard SemiBold'), local('Pretendard-SemiBold'), url('/static/fonts/Pretendard/woff2/Pretendard-SemiBold.woff2') format('woff2'), url('/static/fonts/Pretendard/woff/Pretendard-SemiBold.woff') format('woff');
+    src: local('Pretendard SemiBold'), local('Pretendard-SemiBold'), url('/fonts/Pretendard/woff2/Pretendard-SemiBold.woff2') format('woff2'), url('/fonts/Pretendard/woff/Pretendard-SemiBold.woff') format('woff');
     font-weight: 600;
     font-style: normal;
     font-display: fallback;
 }
 @font-face {
     font-family: 'Pretendard';
-    src: local('Pretendard Bold'), local('Pretendard-Bold'), url('/static/fonts/Pretendard/woff2/Pretendard-Bold.woff2') format('woff2'), url('/static/fonts/Pretendard/woff/Pretendard-Bold.woff') format('woff');
+    src: local('Pretendard Bold'), local('Pretendard-Bold'), url('/fonts/Pretendard/woff2/Pretendard-Bold.woff2') format('woff2'), url('/fonts/Pretendard/woff/Pretendard-Bold.woff') format('woff');
     font-weight: 700;
     font-style: normal;
     font-display: fallback;
 }
 @font-face {
     font-family: 'Pretendard';
-    src: local('Pretendard ExtraBold'), local('Pretendard-ExtraBold'), url('/static/fonts/Pretendard/woff2/Pretendard-ExtraBold.woff2') format('woff2'), url('/static/fonts/Pretendard/woff/Pretendard-ExtraBold.woff') format('woff');
+    src: local('Pretendard ExtraBold'), local('Pretendard-ExtraBold'), url('/fonts/Pretendard/woff2/Pretendard-ExtraBold.woff2') format('woff2'), url('/fonts/Pretendard/woff/Pretendard-ExtraBold.woff') format('woff');
     font-weight: 800;
     font-style: normal;
     font-display: fallback;
 }
 @font-face {
     font-family: 'Pretendard';
-    src: local('Pretendard Black'), local('Pretendard-Black'), url('/static/fonts/Pretendard/woff2/Pretendard-Black.woff2') format('woff2'), url('/static/fonts/Pretendard/woff/Pretendard-Black.woff') format('woff');
+    src: local('Pretendard Black'), local('Pretendard-Black'), url('/fonts/Pretendard/woff2/Pretendard-Black.woff2') format('woff2'), url('/fonts/Pretendard/woff/Pretendard-Black.woff') format('woff');
     font-weight: 900;
     font-style: normal;
     font-display: fallback;
