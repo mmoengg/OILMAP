@@ -2,6 +2,7 @@
 	import Header from '$lib/components/common/Header.svelte';
 	import HistoryContent from '$lib/components/history/HistoryContent.svelte';
 	import FuelHistoryForm from '$lib/components/history/FuelHistoryForm.svelte';
+	import { goto } from '$app/navigation';
 
 	export let data;
 
@@ -62,7 +63,7 @@
 	{#if showForm}
 		<FuelHistoryForm user={resUser} bind:showForm {loadList} title={title} bind:formData />
 	{/if}
-	<Header title="주유 기록" back={true} />
+	<Header title="주유 기록" back={true} callFn={() => { goto('/home') }} />
 		<div class="content_wrap">
 			<ul class="history_list">
 			{#if data.history.length > 0}

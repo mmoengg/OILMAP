@@ -3,6 +3,7 @@
     import proj4 from 'proj4';
     import Map from '$lib/components/stations/Map.svelte'
     import { onMount } from "svelte";
+	import { goto } from '$app/navigation';
 
     export let data
 
@@ -123,7 +124,7 @@
 </script>
 
 <section class="stations_container">
-    <Header title="주유소" back={true} />
+    <Header title="주유소" back={true} callFn={() => { goto('/home') }} />
     <div class="title_wrap">
         <div class="search_box">
             <input type="text" placeholder="주유소명을 입력하세요" bind:value={searchName}
